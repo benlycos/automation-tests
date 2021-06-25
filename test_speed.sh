@@ -26,7 +26,7 @@ fi
 
 for i in $(seq 0 "$(($BOX - 1))")
 do
-        ls /sys/class/net | grep -q "net$i"
+        ip route | grep "default" | grep -q "net$i"
         if [[ "$?" == "0" ]]
         then
                 echo ""
@@ -38,7 +38,7 @@ do
                         if [[ "$i" != "$j" ]]
                         then
 
-                                ls /sys/class/net | grep -q "net$j"
+                                ip route | grep "default" | grep -q "net$j"
                                 if [[ "$?" == "0" ]]
                                 then
                                         PORT_BLK=$(echo $USB_PORTS | cut -d"," -f$(($j + 1)))
@@ -49,7 +49,7 @@ do
                 done
                 route -n > ./speedtest-result/net$i--$1--$RAN_STR.log
                 sleep 1
-                curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - $measure >> ./speedtest-result/net$i--$1--$RAN_STR.log
+                python speedtest.py $measure --json > ./speedtest-result/net$i--$1--$RAN_STR.json
                 DIS_PORTS=${DIS_PORTS::-1}
                 for k in $(seq 1 $BOX)
                 do
@@ -58,16 +58,20 @@ do
                         then
                                 PORT_ENA=$(echo $USB_PORTS | cut -d"," -f$k)
                                 echo $PORT_ENA | sudo tee /sys/bus/usb/drivers/usb/bind || true
-                                ls /sys/class/net | grep -q "net$(($k - 1))"
+                                sleep 2
+                                sudo wvdial --config=./wvdial.conf pppd$(($k - 1)) reboot
+                                ip route | grep "default" | grep -q "net$(($k - 1))"
                                 STAT=$?
                                 while [ "$STAT" != "0" ] 
                                 do
-                                        sleep 5
-                                        ls /sys/class/net | grep -q "net$(($k - 1))"
+                                        sleep 2
+                                        ip route | grep "default" | grep -q "net$(($k - 1))"
                                         STAT=$?
                                 done
                         fi
                 done
+                sleep 5
         fi
 done
+
 
