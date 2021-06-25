@@ -13,3 +13,24 @@ After this script is run it will create a folder called `speedtest-result` in wh
 This file will contain the aggregated % and combined speed for upload as well as download and also the individual connection speed. 
 
 Here is an example output
+
+```
+{
+    "download": 4.900931155199762, 
+    "download_aggr_perc": 123.55514358805553, 
+    "net0": {
+        "download": 2.2865725495222233, 
+        "upload": 4.34064934567907
+    }, 
+    "net1": {
+        "download": 1.4033226019150244, 
+        "upload": 3.9355438229088713
+    }, 
+    "net2": {
+        "download": 0.2766990451912045, 
+        "upload": 3.7842340394223486
+    }, 
+    "upload": 10.574414844582805, 
+    "upload_aggr_perc": 87.67860924163195
+}
+```
