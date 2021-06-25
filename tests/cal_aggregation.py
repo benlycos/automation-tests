@@ -32,4 +32,4 @@ final_data.update(combined_data)
 final_data['upload_aggr_perc'] = (combined_data['upload'] / accumulated_upload) * 100
 final_data['download_aggr_perc'] = (combined_data['download'] / accumulated_download) * 100
 with open('./speedtest-result/final_result--' + sys.argv[1] + '.json', 'w') as f1:
-    json.dump(final_data, f1)
+    json.dump(final_data, f1, sort_keys=True, indent=4)
