@@ -11,7 +11,7 @@ To run the test run the following commands
 wget https://github.com/benlycos/automation-tests/archive/refs/heads/main.tar.gz
 tar -xvf main.tar.gz
 # Doing to the folder in which all the scripts are present. Scripts can only properly run in the tests folder so be in this folder before running the script
-cd automation-tests/tests/
+cd automation-tests-main/tests/
 # Giving exec permision to all the scripts. Only need to be done once for a newly cloned script
 chmod +x *.sh
 # Run the script You might lose the connection from the device as soon as you run the scipt. 
