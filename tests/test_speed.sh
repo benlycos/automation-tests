@@ -8,11 +8,16 @@ then
         BOX=3
 fi
 
-
 if [[ $2 == "5x" ]]
 then
         USB_PORTS="1-3,1-4,1-5,1-7,1-2"
         BOX=5
+fi
+
+if [[ $2 == "8x" ]]
+then
+        USB_PORTS="1-1.2,1-1.4.2.2,1-1.4.2.4,1-1.4.3.1,1-1.4.3.2,1-1.4.3.3,1-1.4.3.4,1-1.1"
+        BOX=8
 fi
 
 echo "Running tests on ${BOX}x"
@@ -39,24 +44,21 @@ do
         ip route | grep "default" | grep -q "net$i"
         if [[ "$?" == "0" ]]
         then
-                echo ""
-                echo "testing"
-                echo net$i
                 DIS_PORTS=""
                 for j in $(seq 0 "$(($BOX - 1))")
                 do
                         if [[ "$i" != "$j" ]]
                         then
-
                                 ip route | grep "default" | grep -q "net$j"
                                 if [[ "$?" == "0" ]]
                                 then
-                                        PORT_BLK=$(echo $USB_PORTS | cut -d"," -f$(($j + 1)))
+                                        PORT_BLK=$(echo "${USB_PORTS}" | cut -d"," -f$(($j + 1)))
                                         DIS_PORTS="${DIS_PORTS}${j},"
-                                        echo $PORT_BLK | sudo tee /sys/bus/usb/drivers/usb/unbind || true
+                                        echo "${PORT_BLK}" | sudo tee /sys/bus/usb/drivers/usb/unbind || true
                                 fi
                         fi
                 done
+                sleep 1
                 route -n > ./speedtest-result/net$i--$1--$RAN_STR.log
                 sleep 1
                 python speedtest.py $measure --json > ./speedtest-result/net$i--$1--$RAN_STR.json
@@ -66,8 +68,8 @@ do
                         echo $DIS_PORTS | grep -q $(($k - 1))
                         if [[ "$?" == "0" ]]
                         then
-                                PORT_ENA=$(echo $USB_PORTS | cut -d"," -f$k)
-                                echo $PORT_ENA | sudo tee /sys/bus/usb/drivers/usb/bind || true
+                                PORT_ENA=$(echo "${USB_PORTS}" | cut -d"," -f$k)
+                                echo "${PORT_ENA}" | sudo tee /sys/bus/usb/drivers/usb/bind || true
                                 sleep 2
                                 sudo wvdial --config=./wvdial.conf pppd$(($k - 1)) reboot
                                 ip route | grep "default" | grep -q "net$(($k - 1))"
@@ -83,5 +85,4 @@ do
                 sleep 5
         fi
 done
-
 
