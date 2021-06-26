@@ -9,6 +9,7 @@ To run the test run the following commands
 ```
 #Get the code only need to be done one in a device if automation-tests folder already exists remove it and run the below command to update a new scripts
 wget https://github.com/benlycos/automation-tests/archive/refs/heads/main.tar.gz
+tar -xvf main.tar.gz
 # Doing to the folder in which all the scripts are present. Scripts can only properly run in the tests folder so be in this folder before running the script
 cd automation-tests/tests/
 # Giving exec permision to all the scripts. Only need to be done once for a newly cloned script
