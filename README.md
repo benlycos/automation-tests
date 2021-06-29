@@ -3,9 +3,9 @@ This contains the tests that need to be performed on to zifilink device
 
 ## Tests that are integrated
 Following are the tests that are integrated into our system
-### Aggregation test
-This checks the aggregation %. To calculate the aggregation % we calculate the upload and download of individual dongles and sum them up and divide by the upload and download speed that is got when all the connected re combined together.
-To run the test run the following commands
+
+### One time setup that need to be done
+Following are the commands that need to be run unless I tell there is an update in the script. If I tell there is an update in the script to delete the directory `automation-tests-main` and then run the following scripts 
 ```
 #Get the code only need to be done one in a device if automation-tests folder already exists remove it and run the below command to update a new scripts
 wget https://github.com/benlycos/automation-tests/archive/refs/heads/main.tar.gz
@@ -16,6 +16,11 @@ rm -rf main.tar.gz
 cd automation-tests-main/tests/
 # Giving exec permision to all the scripts. Only need to be done once for a newly cloned script
 chmod +x *.sh
+```
+### Aggregation test
+This checks the aggregation %. To calculate the aggregation % we calculate the upload and download of individual dongles and sum them up and divide by the upload and download speed that is got when all the connected re combined together.
+To run the test run the following commands
+```
 # Run the script You might lose the connection from the device as soon as you run the scipt. 
 ./run_tests.sh ap 
 ```
@@ -46,3 +51,11 @@ Here is an example output
 ```
 The latest tests are always present in the `speedtest-result` folder. When new test results are generated old test results are moved to folder named `old_test`.
 If you feel there is some problem with the test results then you can check the log files present in the `speedtest-result` folder. The log files contains output of `route -n` before running the speedtest. From this you will be able to make sure that during a given test only that given interface is active. 
+
+
+### Uploading the results
+To upload the result run the following command
+```
+./run_tests.sh ut
+```
+This will upload the current tests that is been run and upload and give the link. Use that link for filing a github issue.
