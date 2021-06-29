@@ -29,7 +29,7 @@ To run the test run the following commands
 This script will take almost 3 minutes to finish running. After this script is run's it will create a folder called `speedtest-result` in which there will be a file which will be named like `final_result--xxxxxxxxxxxxx.json` or `final_error--xxxxxxxxxxxxx.json`. 
 
 Error file is generated when there is an issue in getting speed test done in one of the interfaces. If error file is created follow these steps
-1. Note the previous uploaded file link tha is in the `file_link--xxxxxxxxxxxxx.txt` fileso that we can use it for issue referencing purpose.
+1. Note the previous uploaded file link tha is in the `uploaded_link--xxxxxxxxxxxxx.txt` fileso that we can use it for issue referencing purpose.
 2. Run the test again. 
 3. If that also shows the same resut test the dongle which is giving error individually and see if the dongle if of lower bandwidth. 
 4. If lower bandwidth tell that to the user and replace the dongle or see if the performace gets better
@@ -63,6 +63,6 @@ Here is an example output
 The latest tests are always present in the `speedtest-result` folder. When new test results are generated old test results are moved to folder named `old_test`.
 If you feel there is some problem with the test results then you can check the log files present in the `speedtest-result` folder. The log files contains output of `route -n` before running the speedtest. From this you will be able to make sure that during a given test only that given interface is active. 
 
-After the test is run it will automatically be uploading files to the cloud and there will be a file generated of te format `file_link--xxxxxxxxxxxxx.txt`.
+After the test is run it will automatically be uploading files to the cloud and there will be a file generated of te format `uploaded_link--xxxxxxxxxxxxx.txt`.
 Which will have the link. Use that link to refer to the tests while describing the issue.
 
