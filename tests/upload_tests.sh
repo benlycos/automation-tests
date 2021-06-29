@@ -13,5 +13,5 @@ CONTENT=$(base64 ${FLD}.tar.gz)
 MSGG="Test results from ${SRL_NO}"
 URL="https://api.github.com/repos/benlycos/automation-results/contents/${DTE}/${SRL_NO}/${FLD}.tar.gz"
 python upload_tests.py "${TOK}" "${CONTENT}" "${MSGG}" "${URL}"
-echo "https://github.com/benlycos/automation-results/blob/main/${DTE}/${SRL_NO}/${FLD}.tar.gz" | uploaded_link--x.txt
+echo "https://github.com/benlycos/automation-results/blob/main/${DTE}/${SRL_NO}/${FLD}.tar.gz" | uploaded_link--$1.txt
 rm -rf ${FLD}.tar.gz
