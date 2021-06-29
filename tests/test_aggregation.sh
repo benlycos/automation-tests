@@ -22,4 +22,4 @@ python speedtest.py --no-upload --json > ./speedtest-result/all--download--$RAN_
 sleep 5
 
 python cal_aggregation.py $RAN_STR
-./upload_tests.sh
+./upload_tests.sh ${RAN_STR}
