@@ -7,6 +7,7 @@ mkdir -p ./speedtest-result
 mkdir -p ./speedtest-result/old_test
 mv ./speedtest-result/*.log ./speedtest-result/old_test/
 mv ./speedtest-result/*.json ./speedtest-result/old_test/
+mv ./speedtest-result/*.txt ./speedtest-result/old_test/
 
 ./test_speed.sh upload ${NUM}x $RAN_STR
 route -n > ./speedtest-result/all--upload--$RAN_STR.log
