@@ -8,7 +8,7 @@ cp -R ./speedtest-result/*.json ./${FLD}/
 tar -czf "abc.tar.gz" "${FLD}"
 mv abc.tar.gz ${FLD}.tar.gz
 rm -rf "./${FLD}/"
-TOK="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"
+TOK=$(cat key.gpg | openssl aes-256-cbc -d -a -pass pass:somepassword)
 CONTENT=$(base64 ${FLD}.tar.gz)
 MSGG="Test results from ${SRL_NO}"
 URL="https://api.github.com/repos/benlycos/automation-results/contents/${DTE}/${SRL_NO}/${FLD}.tar.gz"
