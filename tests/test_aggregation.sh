@@ -8,7 +8,7 @@ mkdir -p ./speedtest-result/old_test
 mv ./speedtest-result/*.log ./speedtest-result/old_test/
 mv ./speedtest-result/*.json ./speedtest-result/old_test/
 mv ./speedtest-result/*.txt ./speedtest-result/old_test/
-SLACK_URL=$(echo $(cat ./slack_url.gpg) | openssl aes-256-cbc -d -a -pass pass:somepassword)
+SLACK_URL=$(cat ./slack_url.gpg | openssl aes-256-cbc -d -a -pass pass:somepassword)
 echo $SLACK_URL
 SERVER_IP=$(curl -s checkip.amazonaws.com)
 python send_slack.py "Testing starting on box ${SRL_NO} at $(date)" "${SLACK_URL}"
