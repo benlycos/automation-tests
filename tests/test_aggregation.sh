@@ -8,6 +8,7 @@ mkdir -p ./speedtest-result/old_test
 mv ./speedtest-result/*.log ./speedtest-result/old_test/
 mv ./speedtest-result/*.json ./speedtest-result/old_test/
 mv ./speedtest-result/*.txt ./speedtest-result/old_test/
+SLACK_URL=$(echo $(cat ./slack_url.gpg) | openssl aes-256-cbc -d -a -pass pass:somepassword)
 SERVER_IP=$(curl -s checkip.amazonaws.com)
 ./test_speed.sh upload ${NUM}x $RAN_STR
 route -n > ./speedtest-result/all--upload--$RAN_STR.log
