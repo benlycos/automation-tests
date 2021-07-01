@@ -15,3 +15,4 @@ URL="https://api.github.com/repos/benlycos/automation-results/contents/${DTE}/${
 python upload_tests.py "${TOK}" "${CONTENT}" "${MSGG}" "${URL}"
 echo "https://github.com/benlycos/automation-results/blob/main/${DTE}/${SRL_NO}/${FLD}.tar.gz" > ./speedtest-result/uploaded_link--$1.txt
 rm -rf ${FLD}.tar.gz
+SLACK_URL=$(cat ./slack_url.gpg | openssl aes-256-cbc -d -a -pass pass:somepassword)
