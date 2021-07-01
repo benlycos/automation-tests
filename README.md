@@ -4,27 +4,13 @@ This contains the tests that need to be performed on to zifilink device
 ## Tests that are integrated
 Following are the tests that are integrated into our system
 
-### One time setup that need to be done
-Following are the commands that need to be run unless I tell there is an update in the script. If I tell there is an update in the script to delete the directory `automation-tests-main` and then run the following scripts 
-
-```
-#Get the code only need to be done one in a device if automation-tests folder already exists remove it and run the below command to update a new scripts
-wget https://github.com/benlycos/automation-tests/archive/refs/heads/main.tar.gz
-tar -xvf main.tar.gz
-# deleting the tar file
-rm -rf main.tar.gz
-# Doing to the folder in which all the scripts are present. Scripts can only properly run in the tests folder so be in this folder before running the script
-cd automation-tests-main/tests/
-# Giving exec permision to all the scripts. Only need to be done once for a newly cloned script
-chmod +x *.sh
-```
 ### Aggregation test
 This checks the aggregation %. To calculate the aggregation % we calculate the upload and download of individual dongles and sum them up and divide by the upload and download speed that is got when all the connected re combined together.
 To run the test run the following commands
 
 ```
-# Run the script You might lose the connection from the device as soon as you run the scipt. 
-./run_tests.sh ap 
+# This will make sure that you guys always run the latest script
+wget https://raw.githubusercontent.com/benlycos/automation-tests/main/run_aggregation_percentage.sh -O - | sh
 ```
 This script will take almost 3 minutes to finish running. After this script is run's it will create a folder called `speedtest-result` in which there will be a file which will be named like `final_result--xxxxxxxxxxxxx.json` or `final_error--xxxxxxxxxxxxx.json`. 
 
