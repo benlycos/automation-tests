@@ -5,18 +5,21 @@ RAN_STR=$3
 if [[ $2 == "3x" ]]
 then
         USB_PORTS="1-1,1-2,1-3"
+        USB_PORTS1="1-1,1-2,1-3"
         BOX=3
 fi
 
 if [[ $2 == "5x" ]]
 then
         USB_PORTS="2-3,1-4,1-5,1-7,1-2"
+        USB_PORTS1="1-3,1-4,1-5,1-7,1-2"
         BOX=5
 fi
 
 if [[ $2 == "8x" ]]
 then
         USB_PORTS="1-1.2,1-1.4.2.2,1-1.4.2.4,1-1.4.3.1,1-1.4.3.2,1-1.4.3.3,1-1.4.3.4,1-1.1"
+        USB_PORTS1="1-1.2,1-1.4.2.2,1-1.4.2.4,1-1.4.3.1,1-1.4.3.2,1-1.4.3.3,1-1.4.3.4,1-1.1"
         BOX=8
 fi
 
@@ -53,8 +56,10 @@ do
                                 if [[ "$?" == "0" ]]
                                 then
                                         PORT_BLK=$(echo "${USB_PORTS}" | cut -d"," -f$(($j + 1)))
+                                        PORT_BLK1=$(echo "${USB_PORTS1}" | cut -d"," -f$(($j + 1)))
                                         DIS_PORTS="${DIS_PORTS}${j},"
                                         echo "${PORT_BLK}" | sudo tee /sys/bus/usb/drivers/usb/unbind || true
+                                        echo "${PORT_BLK1}" | sudo tee /sys/bus/usb/drivers/usb/unbind || true
                                 fi
                         fi
                 done
@@ -69,7 +74,9 @@ do
                         if [[ "$?" == "0" ]]
                         then
                                 PORT_ENA=$(echo "${USB_PORTS}" | cut -d"," -f$k)
+                                PORT_ENA1=$(echo "${USB_PORTS1}" | cut -d"," -f$k)
                                 echo "${PORT_ENA}" | sudo tee /sys/bus/usb/drivers/usb/bind || true
+                                echo "${PORT_ENA1}" | sudo tee /sys/bus/usb/drivers/usb/bind || true
                                 sleep 2
                                 sudo wvdial --config=./wvdial.conf pppd$(($k - 1)) reboot
                                 ip route | grep "default" | grep -q "net$(($k - 1))"
