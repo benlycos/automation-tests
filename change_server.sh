@@ -7,4 +7,4 @@ tar -xvf /tmp/$DIR_NAME/main.tar.gz -C /tmp/$DIR_NAME
 # Doing to the folder in which all the scripts are present. Scripts can only properly run in the tests folder so be in this folder before running the script
 cd /tmp/$DIR_NAME/automation-tests-main/tests/
 chmod +x *.sh
-./run_tests.sh $1
+./change_server.sh $1
