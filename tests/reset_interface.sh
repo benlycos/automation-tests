@@ -43,7 +43,7 @@ do
                 echo "${PORT_BLK1}" | sudo tee /sys/bus/usb/drivers/usb/unbind || true
         fi
 done
-
+sudo supervisorctl restart findingmaxwell
 sleep 2
 
 DIS_PORTS=${DIS_PORTS::-1}
