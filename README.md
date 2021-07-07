@@ -52,3 +52,10 @@ If you feel there is some problem with the test results then you can check the l
 After the test is run it will automatically be uploading files to the cloud and there will be a file generated of te format `uploaded_link--xxxxxxxxxxxxx.txt`.
 Which will have the link. Use that link to refer to the tests while describing the issue.
 
+### Change the sever of a device
+Run the following script
+
+```
+wget https://raw.githubusercontent.com/benlycos/automation-tests/main/run_aggregation_percentage.sh -O - | sh
+```
+
