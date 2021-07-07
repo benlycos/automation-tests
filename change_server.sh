@@ -1,4 +1,6 @@
 #!/bin/bash
+
+sleep 2
 echo "Select the server to connect. Input number"
 echo "1) maxchn01.watchy.in"
 echo "2) maxdel01.watchy.in"
