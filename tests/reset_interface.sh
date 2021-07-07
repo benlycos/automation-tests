@@ -57,5 +57,7 @@ do
                 PORT_ENA1=$(echo "${USB_PORTS1}" | cut -d"," -f$k)
                 echo "${PORT_ENA}" | sudo tee /sys/bus/usb/drivers/usb/bind || true
                 echo "${PORT_ENA1}" | sudo tee /sys/bus/usb/drivers/usb/bind || true
+                sleep 2
+                sudo wvdial --config=./wvdial.conf pppd$(($k - 1)) reboot
         fi
 done
