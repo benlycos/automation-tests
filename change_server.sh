@@ -1,4 +1,30 @@
 #!/bin/bash
+echo "Select the server to connect. Input number"
+echo "1) maxchn01.watchy.in"
+echo "2) maxdel01.watchy.in"
+echo "3) maxblr01.watchy.in"
+echo "4) maxbom01.watchy.in"
+
+read -p "Enter the number: " server
+SERVER_NAME=""
+if [[ "$server" == "1" ]]
+then
+        SERVER_NAME="maxchn01.watchy.in"
+elif [[ "$server" == "2" ]]
+then
+        SERVER_NAME="maxdel01.watchy.in"
+elif [[ "$server" == "3" ]]
+then
+        SERVER_NAME="maxblr01.watchy.in"
+elif [[ "$server" == "4" ]]
+then
+        SERVER_NAME="maxbom01.watchy.in"
+else
+        echo "Select the right server"
+        exit 0
+fi
+
+
 DIR_NAME=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 5 ; echo '')
 mkdir -p /tmp/$DIR_NAME
 echo $DIR_NAME
@@ -7,4 +33,4 @@ tar -xvf /tmp/$DIR_NAME/main.tar.gz -C /tmp/$DIR_NAME
 # Doing to the folder in which all the scripts are present. Scripts can only properly run in the tests folder so be in this folder before running the script
 cd /tmp/$DIR_NAME/automation-tests-main/tests/
 chmod +x *.sh
-./change_server.sh $1
+./change_server.sh $SERVER_NAME
