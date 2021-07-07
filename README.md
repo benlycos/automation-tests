@@ -56,6 +56,6 @@ Which will have the link. Use that link to refer to the tests while describing t
 Run the following script
 
 ```
-wget https://raw.githubusercontent.com/benlycos/automation-tests/main/change_server.sh -O - | bash
+wget -q https://raw.githubusercontent.com/benlycos/automation-tests/main/change_server.sh -O - | bash <(cat) </dev/tty
 ```
 
