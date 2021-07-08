@@ -5,10 +5,12 @@ then
         echo "NOTHING"
         exit 0
 else 
-        while ! ping -c1 $P_IP &>/dev/null
-        do 
-                echo "NOTHING"
+        ping -c1 $P_IP > /dev/null
+        if [ $? -eq 0 ]
+        then 
+                echo $P_IP
                 exit 0
-        done
-        echo $P_IP
+        fi
+        echo "NOTHING"
+        exit 0
 fi
