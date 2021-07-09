@@ -8,7 +8,7 @@
 # echo "4) maxbom01.watchy.in"
 
 # read -p "Enter the number: " server
-# SERVER_NAME=""
+SERVER_NAME=""
 if [[ "$1" == "chn01" ]]
 then
         SERVER_NAME="maxchn01.watchy.in"
@@ -23,7 +23,6 @@ then
         SERVER_NAME="maxbom01.watchy.in"
 else
         echo "Select the right server"
-        exit 0
 fi
 
 
