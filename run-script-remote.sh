@@ -6,4 +6,4 @@ curl -s --header "Authorization: token $TOK" --header 'Accept: application/vnd.g
 FINAL_CMD="nohup \"${3}\" > test.out 2> test.err < /dev/null &"
 sudo chmod 400 ${TMP_DIR}/$1
 echo $FINAL_CMD > ${TMP_DIR}/cmd
-ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 "$FINAL_CMD"
+ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 $FINAL_CMD
