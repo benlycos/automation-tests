@@ -5,5 +5,5 @@ TOK=$(wget -q https://raw.githubusercontent.com/benlycos/automation-tests/main/t
 curl -s --header "Authorization: token $TOK" --header 'Accept: application/vnd.github.v3.raw'  -o "${TMP_DIR}/$1" --location "https://api.github.com/repos/benlycos/box-keys/contents/$1"
 #FINAL_CMD=
 sudo chmod 400 ${TMP_DIR}/$1
-echo "ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 \"nohup bash -c \"( ( ${3} ) & )\" \" > ${TMP_DIR}/cmd
+echo "ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 \"nohup bash -c \"( ( ${3} ) & )\" \"" > ${TMP_DIR}/cmd
 ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 "nohup bash -c \"( ( ${3} ) & )\" "
