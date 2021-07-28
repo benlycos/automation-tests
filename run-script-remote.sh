@@ -8,4 +8,4 @@ USER_CMD=$(cat ${TMP_DIR}/cmd)
 FINAL_CMD="nohup bash -c \"( ( ${USER_CMD} ) & )\" "
 sudo chmod 400 ${TMP_DIR}/$1
 echo $FINAL_CMD >  ${TMP_DIR}/final_cmd
-ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 "nohup bash -c ( ( ${USER_CMD} ) & ) "
+ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 "nohup bash -c \"( ( ${USER_CMD} ) & )\" "
