@@ -15,5 +15,4 @@ python update_maxwell_conf.py $1
 sleep 1
 NUM=${SRL_NO:0:1}
 curl -X POST --data-urlencode "payload={\"text\": \"Server changed for ${SRL_NO} to ${1}. It will be connected to the new server in 30 seconds.`date` \"}" ${SLACK_URL}
-nohup ./reset_interface.sh ${NUM}x &
-exit 0
+./reset_interface.sh ${NUM}x
