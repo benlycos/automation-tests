@@ -2,7 +2,6 @@
 
 # sleep 2
 # echo "Select the server to connect. Input number"
-# echo "1) maxchn01.watchy.in"
 # echo "2) maxdel01.watchy.in"
 # echo "3) maxblr01.watchy.in"
 # echo "4) maxbom01.watchy.in"
