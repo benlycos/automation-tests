@@ -22,6 +22,7 @@ then
         SERVER_NAME="maxbom01.watchy.in"
 else
         echo "Select the right server"
+        exit 0
 fi
 
 TMP_DIR=$(mktemp -d -t watchy-XXXXXXXXXX)
@@ -31,3 +32,4 @@ tar -xvf ${TMP_DIR}/main.tar.gz -C ${TMP_DIR}
 cd ${TMP_DIR}/automation-tests-main/tests/
 chmod +x *.sh
 nohup ./change_server.sh $SERVER_NAME &
+exit 0
