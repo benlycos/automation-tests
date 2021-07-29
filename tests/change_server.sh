@@ -10,7 +10,7 @@ fi
 
 curl --output /dev/null --silent --head --fail -X POST --data-urlencode "payload={\"text\": \"Going to change the server for ${SRL_NO} to ${1}.`date` \"}" ${SLACK_URL}
 echo $?
-
+sleep 1
 python update_maxwell_conf.py $1
 NUM=${SRL_NO:0:1}
 ./reset_interface.sh ${NUM}x
