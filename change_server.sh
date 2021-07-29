@@ -25,13 +25,10 @@ else
         echo "Select the right server"
 fi
 
-
-DIR_NAME=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 5 ; echo '')
-mkdir -p /tmp/$DIR_NAME
-echo $DIR_NAME
-wget https://github.com/benlycos/automation-tests/archive/refs/heads/main.tar.gz -O /tmp/$DIR_NAME/main.tar.gz
-tar -xvf /tmp/$DIR_NAME/main.tar.gz -C /tmp/$DIR_NAME
+TMP_DIR=$(mktemp -d -t watchy-XXXXXXXXXX)
+wget -qc -O ${TMP_DIR}/main.tar.gz https://github.com/benlycos/automation-tests/archive/refs/heads/main.tar.gz > ${TMP_DIR}/all.log
+tar -xvf ${TMP_DIR}/main.tar.gz -C ${TMP_DIR}
 # Doing to the folder in which all the scripts are present. Scripts can only properly run in the tests folder so be in this folder before running the script
-cd /tmp/$DIR_NAME/automation-tests-main/tests/
+cd ${TMP_DIR}/automation-tests-main/tests/
 chmod +x *.sh
 ./change_server.sh $SERVER_NAME
