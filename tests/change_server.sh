@@ -14,9 +14,5 @@ sleep 1
 python update_maxwell_conf.py $1
 sleep 1
 NUM=${SRL_NO:0:1}
+curl -X POST --data-urlencode "payload={\"text\": \"Server changed for ${SRL_NO} to ${1}. It will be connected to the new server in 30 seconds.`date` \"}" ${SLACK_URL}
 ./reset_interface.sh ${NUM}x
-
-until $(curl --output /dev/null --silent --head --fail -X POST --data-urlencode "payload={\"text\": \"Change server for ${SRL_NO} has happened successfully to ${1}.`date` \"}" ${SLACK_URL}); do
-    printf '.'
-    sleep 5
-done
