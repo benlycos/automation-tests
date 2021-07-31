@@ -9,4 +9,4 @@ USER_CMD=$(cat ${TMP_DIR}/cmd)
 sudo chmod 400 ${TMP_DIR}/$1
 # echo $FINAL_CMD >  ${TMP_DIR}/final_cmd
 ssh -q -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no  -i $TMP_DIR/$1 watchy@$2 ${USER_CMD}
-rm -rf ${TMP_DIR}
+echo ${TMP_DIR}
